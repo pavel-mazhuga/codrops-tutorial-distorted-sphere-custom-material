@@ -41,7 +41,6 @@ const Experiment = ({ isMobile }) => {
         noiseStrength,
         displacementStrength,
         fractAmount,
-        remapPowerRange,
         roughness,
         metalness,
         clearcoat,
@@ -64,13 +63,13 @@ const Experiment = ({ isMobile }) => {
             step: 0.001,
         },
         noiseStrength: {
-            value: 0.29,
+            value: 0.3,
             min: 0,
             max: 3,
             step: 0.001,
         },
         displacementStrength: {
-            value: 0.41,
+            value: 0.57,
             min: 0,
             max: 1,
             step: 0.001,
@@ -80,11 +79,6 @@ const Experiment = ({ isMobile }) => {
             min: 0,
             max: 10,
             step: 1,
-        },
-        remapPowerRange: {
-            min: 0,
-            max: 1,
-            value: [0.07, 0.73],
         },
         roughness: {
             min: 0,
@@ -189,7 +183,6 @@ const Experiment = ({ isMobile }) => {
         uNoiseStrength: { value: noiseStrength },
         uDisplacementStrength: { value: displacementStrength },
         uFractAmount: { value: fractAmount },
-        uRemapPower: { value: remapPowerRange },
     };
 
     return (

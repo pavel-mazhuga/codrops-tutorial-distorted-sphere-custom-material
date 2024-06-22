@@ -7,7 +7,6 @@ uniform float uSpeed;
 uniform float uNoiseStrength;
 uniform float uDisplacementStrength;
 uniform float uFractAmount;
-uniform float[2] uRemapPower;
 
 //	Classic Perlin 3D Noise 
 //	by Stefan Gustavson (https://github.com/stegu/webgl-noise)
@@ -84,11 +83,6 @@ float cnoise(vec3 P){
   return 2.2 * n_xyz;
 }
 
-float remap(float value, float in_min, float in_max, float out_min, float out_max) {
-    float mapped = ((value - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
-    return clamp(mapped, out_min, out_max);
-}
-
 float smoothMod(float axis, float amp, float rad) {
     float top = cos(PI * (axis / amp)) * sin(PI * (axis / amp));
     float bottom = pow(sin(PI * (axis / amp)), 2.0) + pow(rad, 2.0);
@@ -99,10 +93,9 @@ float smoothMod(float axis, float amp, float rad) {
 float getDisplacement(vec3 position) {
     vec3 pos = position;
     pos.y -= uTime * 0.05 * uSpeed;
-    pos += cnoise(pos) * uNoiseStrength;
-    pos += cnoise(pos.zyx) * uNoiseStrength * 1.5;
+    pos += cnoise(pos * 1.65) * uNoiseStrength;
 
-    return remap(smoothMod(pos.y * uFractAmount, 1., 1.5), uRemapPower[0], uRemapPower[1], 0., 1.) * uDisplacementStrength;
+    return smoothMod(pos.y * uFractAmount, 1., 1.5) * uDisplacementStrength;
 }
 
 void main() {
