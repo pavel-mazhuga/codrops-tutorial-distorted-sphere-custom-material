@@ -100,6 +100,7 @@ float getDisplacement(vec3 position) {
     vec3 pos = position;
     pos.y -= uTime * 0.05 * uSpeed;
     pos += cnoise(pos) * uNoiseStrength;
+    pos += cnoise(pos.zyx) * uNoiseStrength * 1.5;
 
     return remap(smoothMod(pos.y * uFractAmount, 1., 1.5), uRemapPower[0], uRemapPower[1], 0., 1.) * uDisplacementStrength;
 }
