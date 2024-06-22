@@ -1,8 +1,6 @@
-// vite.config.js
 import { defineConfig } from 'vite';
-
-import { glslify } from 'vite-plugin-glslify';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-    plugins: [glslify()],
+    plugins: [react()],
 });
