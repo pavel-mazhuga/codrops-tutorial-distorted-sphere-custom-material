@@ -7,9 +7,9 @@ _How to use this template:_
 
 ---
 
-# Distorted sphere with a custom Three.js material
+# Creating an animated distorted sphere with a custom Three.js material
 
-_A description of the demo goes here._
+Exploring how to create an animated distorted sphere with Three.js enhancing built-in materials with shaders.
 
 ![Image Title](https://generative-placeholders.glitch.me/image?width=800&height=600")
 
