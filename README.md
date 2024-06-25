@@ -7,9 +7,9 @@ _How to use this template:_
 
 ---
 
-# Creating an animated distorted sphere with a custom Three.js material
+# Creating an animated displaced sphere with a custom Three.js material
 
-Exploring how to create an animated distorted sphere with Three.js enhancing built-in materials with shaders.
+Exploring how to create an animated displaced sphere with Three.js enhancing built-in materials with shaders.
 
 ![Image Title](https://generative-placeholders.glitch.me/image?width=800&height=600")
 
@@ -19,15 +19,14 @@ Exploring how to create an animated distorted sphere with Three.js enhancing bui
 
 ## Installation
 
-Run this demo on a [local server](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/set_up_a_local_testing_server).
-
-## Credits
-
--   Images generated with [Midjourney](https://midjourney.com) TODO
+```
+npm install
+npm run dev
+```
 
 ## Misc
 
-Follow _Author_: [Twitter](https://x.com/PMazhuga), [Instagram](https://www.instagram.com/mazhuga.gl), [GitHub](https://github.com/pavel-mazhuga/)
+Follow _Pavel Mazhuga_: [Twitter](https://x.com/PMazhuga), [Instagram](https://www.instagram.com/mazhuga.gl), [GitHub](https://github.com/pavel-mazhuga/), [Website](https://pavelmazhuga.com)
 
 Follow Codrops: [X](http://www.X.com/codrops), [Facebook](http://www.facebook.com/codrops), [GitHub](https://github.com/codrops), [Instagram](https://www.instagram.com/codropsss/)
 
