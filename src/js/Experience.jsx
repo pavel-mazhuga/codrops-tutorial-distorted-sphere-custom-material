@@ -11,7 +11,7 @@ import vertexShader from './shaders/vertex.glsl?raw';
 import fragmentShader from './shaders/fragment.glsl?raw';
 import LevaWrapper from './LevaWrapper';
 
-const Experiment = ({ isMobile }) => {
+const Experiment = ({ shouldReduceQuality, isMobile }) => {
     const materialRef = useRef(null);
     const depthMaterialRef = useRef(null);
 
@@ -155,10 +155,10 @@ const Experiment = ({ isMobile }) => {
     });
 
     const geometry = useMemo(() => {
-        const geometry = mergeVertices(new IcosahedronGeometry(1.3, isMobile ? 128 : 200));
+        const geometry = mergeVertices(new IcosahedronGeometry(1.3, shouldReduceQuality ? 128 : 200));
         geometry.computeTangents();
         return geometry;
-    }, [isMobile]);
+    }, [shouldReduceQuality]);
 
     const uniforms = {
         uTime: { value: 0 },
@@ -172,7 +172,7 @@ const Experiment = ({ isMobile }) => {
 
     return (
         <>
-            <mesh geometry={geometry} matrixAutoUpdate={false} frustumCulled={false}>
+            <mesh geometry={geometry} frustumCulled={false} position={[0, isMobile ? -1.3 * 0 : 0, 0]}>
                 <CustomShaderMaterial
                     ref={materialRef}
                     baseMaterial={MeshPhysicalMaterial}
@@ -208,21 +208,22 @@ const Experiment = ({ isMobile }) => {
 };
 
 const Experience = () => {
-    const isMobile = useMediaQuery('(max-width: 1199px)');
+    const isTablet = useMediaQuery('(max-width: 1199px)');
+    const isMobile = useMediaQuery('(max-width: 767px)');
 
     return (
         <div className="canvas-wrapper">
             <LevaWrapper />
             <Canvas
                 camera={{
-                    position: [0, 0, isMobile ? 9 : 5],
+                    position: [0, 0, isTablet ? 9 : 6],
                     fov: 45,
                     near: 0.1,
                     far: 1000,
                 }}
                 gl={{ alpha: false }}
             >
-                <Experiment isMobile={isMobile} />
+                <Experiment shouldReduceQuality={isTablet} isMobile={isMobile} />
                 <OrbitControls />
             </Canvas>
         </div>
