@@ -3,20 +3,13 @@ import { OrbitControls } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useControls } from 'leva';
 import { Suspense, useMemo, useRef } from 'react';
-import {
-    Color,
-    IcosahedronGeometry,
-    MeshDepthMaterial,
-    MeshPhysicalMaterial,
-    RGBADepthPacking,
-    ShaderMaterial,
-    Vector3,
-} from 'three';
+import { Color, IcosahedronGeometry, MeshDepthMaterial, MeshPhysicalMaterial, RGBADepthPacking } from 'three';
 import CustomShaderMaterial from 'three-custom-shader-material';
 import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils';
 import { useMediaQuery } from 'usehooks-ts';
 import vertexShader from './shaders/vertex.glsl?raw';
 import fragmentShader from './shaders/fragment.glsl?raw';
+import LevaWrapper from './LevaWrapper';
 
 const Experiment = ({ isMobile }) => {
     const materialRef = useRef(null);
@@ -54,7 +47,6 @@ const Experiment = ({ isMobile }) => {
             max: 3,
             step: 0.001,
         },
-        // color: '#fff900',
         color: '#af00ff',
         speed: {
             value: 1.1,
@@ -84,42 +76,36 @@ const Experiment = ({ isMobile }) => {
             min: 0,
             max: 1,
             step: 0.001,
-            // value: 0.5,
             value: 0.56,
         },
         metalness: {
             min: 0,
             max: 1,
             step: 0.001,
-            // value: 0.5,
             value: 0.76,
         },
         clearcoat: {
             min: 0,
             max: 1,
             step: 0.001,
-            // value: 0.33,
             value: 0,
         },
         reflectivity: {
             min: 0,
             max: 1,
             step: 0.001,
-            // value: 0.5,
             value: 0.46,
         },
         ior: {
             min: 0.001,
             max: 5,
             step: 0.001,
-            // value: 1.5,
             value: 2.81,
         },
         iridescence: {
             min: 0,
             max: 1,
             step: 0.001,
-            // value: 0.15,
             value: 0.96,
         },
     });
@@ -143,7 +129,6 @@ const Experiment = ({ isMobile }) => {
     } = useControls('Directional light', {
         color: '#fff',
         intensity: {
-            // value: 3,
             value: 5,
             min: 0,
             max: 5,
@@ -170,9 +155,9 @@ const Experiment = ({ isMobile }) => {
     });
 
     const geometry = useMemo(() => {
-        const g = mergeVertices(new IcosahedronGeometry(1.3, isMobile ? 128 : 200));
-        g.computeTangents();
-        return g;
+        const geometry = mergeVertices(new IcosahedronGeometry(1.3, isMobile ? 128 : 200));
+        geometry.computeTangents();
+        return geometry;
     }, [isMobile]);
 
     const uniforms = {
@@ -227,6 +212,7 @@ const Experience = () => {
 
     return (
         <div className="canvas-wrapper">
+            <LevaWrapper />
             <Canvas
                 camera={{
                     position: [0, 0, isMobile ? 9 : 5],
