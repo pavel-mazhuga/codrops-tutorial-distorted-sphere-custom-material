@@ -1,6 +1,6 @@
 # Creating an animated displaced sphere with a custom Three.js material
 
-Exploring how to create an animated displaced sphere with Three.js enhancing built-in materials with shaders.
+Exploring the possibilities of creating a custom material using shaders based on built-in Three.js materials with React Three Fiber.
 
 ![Image Title](https://generative-placeholders.glitch.me/image?width=800&height=600")
 
