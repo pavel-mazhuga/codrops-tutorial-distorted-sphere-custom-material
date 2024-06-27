@@ -1,12 +1,3 @@
-_How to use this template:_
-
--   Styles for the demo go in css/base.css
--   Add build instructions and credits to the README.md
--   For writing the tutorial, take a look at https://github.com/crnacura/CodropsTemplate/wiki/Writing-the-article
--   Delete this 'how to' intro in the final version and leave the following (fill in title/description, credits and social links of your likings, we'll do the rest):
-
----
-
 # Creating an animated displaced sphere with a custom Three.js material
 
 Exploring how to create an animated displaced sphere with Three.js enhancing built-in materials with shaders.
