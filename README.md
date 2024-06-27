@@ -2,7 +2,7 @@
 
 Exploring the possibilities of creating a custom material using shaders based on built-in Three.js materials with React Three Fiber.
 
-![Image Title](https://generative-placeholders.glitch.me/image?width=800&height=600")
+![Image Title](./preview.jpg)
 
 [Article on Codrops](https://tympanus.net/codrops/?p=)
 
