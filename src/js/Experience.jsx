@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useControls } from 'leva';
@@ -211,6 +211,18 @@ const Experience = () => {
     const isTablet = useMediaQuery('(max-width: 1199px)');
     const isMobile = useMediaQuery('(max-width: 767px)');
 
+    useEffect(() => {
+        const handleLoad = () => {
+            document.body.classList.remove('loading');
+        };
+
+        window.addEventListener('load', handleLoad);
+
+        return () => {
+            window.removeEventListener('load', handleLoad);
+        };
+    }, []);
+
     return (
         <div className="canvas-wrapper">
             <LevaWrapper />
@@ -222,8 +234,11 @@ const Experience = () => {
                     far: 1000,
                 }}
                 gl={{ alpha: false }}
+                onCreated={() => document.body.classList.remove('loading')}
             >
-                <Experiment shouldReduceQuality={isTablet} isMobile={isMobile} />
+                <Suspense fallback={null}>
+                    <Experiment shouldReduceQuality={isTablet} isMobile={isMobile} />
+                </Suspense>
                 <OrbitControls />
             </Canvas>
         </div>
