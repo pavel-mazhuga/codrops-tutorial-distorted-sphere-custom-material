@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useControls } from 'leva';
@@ -11,7 +11,7 @@ import vertexShader from './shaders/vertex.glsl?raw';
 import fragmentShader from './shaders/fragment.glsl?raw';
 import LevaWrapper from './LevaWrapper';
 
-const Experiment = ({ shouldReduceQuality, isMobile }) => {
+const Experiment = ({ shouldReduceQuality, isMobile, onLoaded }) => {
     const materialRef = useRef(null);
     const depthMaterialRef = useRef(null);
 
@@ -170,6 +170,10 @@ const Experiment = ({ shouldReduceQuality, isMobile }) => {
         uFractAmount: { value: fractAmount },
     };
 
+    useEffect(() => {
+        onLoaded();
+    }, [onLoaded]);
+
     return (
         <>
             <mesh geometry={geometry} frustumCulled={false} position={[0, isMobile ? -1.3 * 0 : 0, 0]}>
@@ -210,18 +214,17 @@ const Experiment = ({ shouldReduceQuality, isMobile }) => {
 const Experience = () => {
     const isTablet = useMediaQuery('(max-width: 1199px)');
     const isMobile = useMediaQuery('(max-width: 767px)');
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const handleLoad = () => {
+        if (isLoaded) {
             document.body.classList.remove('loading');
-        };
+        }
+    }, [isLoaded]);
 
-        window.addEventListener('load', handleLoad);
-
-        return () => {
-            window.removeEventListener('load', handleLoad);
-        };
-    }, []);
+    const handleLoad = () => {
+        setIsLoaded(true);
+    };
 
     return (
         <div className="canvas-wrapper">
@@ -234,10 +237,9 @@ const Experience = () => {
                     far: 1000,
                 }}
                 gl={{ alpha: false }}
-                onCreated={() => document.body.classList.remove('loading')}
             >
                 <Suspense fallback={null}>
-                    <Experiment shouldReduceQuality={isTablet} isMobile={isMobile} />
+                    <Experiment shouldReduceQuality={isTablet} isMobile={isMobile} onLoaded={handleLoad} />
                 </Suspense>
                 <OrbitControls />
             </Canvas>

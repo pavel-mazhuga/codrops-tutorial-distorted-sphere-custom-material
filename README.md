@@ -1,12 +1,12 @@
-# Creating an animated displaced sphere with a custom Three.js material
+# Creating an Animated Displaced Sphere with a Custom Three.js Material
 
 Exploring the possibilities of creating a custom material using shaders based on built-in Three.js materials with React Three Fiber.
 
 ![Image Title](./preview.jpg)
 
-[Article on Codrops](https://tympanus.net/codrops/?p=)
+[Article on Codrops](https://tympanus.net/codrops/?p=78913)
 
-[Demo](http://tympanus.net/Development/.../)
+[Demo](http://tympanus.net/Tutorials/DistortedSphereCustomMaterial/)
 
 ## Installation
 
@@ -25,4 +25,4 @@ Follow Codrops: [X](http://www.X.com/codrops), [Facebook](http://www.facebook.co
 
 [MIT](LICENSE)
 
-Made with :blue_heart: by [Codrops](http://www.codrops.com)
+Made with :blue_heart: by [Codrops](http://www.codrops.com) and [Pavel Mazhuga](https://x.com/PMazhuga)
